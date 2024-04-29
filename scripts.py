@@ -1,6 +1,8 @@
 from datetime import datetime
 from uuid import uuid4
+
 from app.database import database
+
 
 def criar_todas_as_clinicas_no_firestore():
     collection = database.collection('clinics')
@@ -763,16 +765,14 @@ def criar_todas_as_clinicas_no_firestore():
                 'name': item['pessoas'],
                 'profession': item['profissao'],
             },
-            'createdAt': datetime.now() 
+            'createdAt': datetime.now(),
         }
-        
+
         new_data.append(new_item)
 
-    
     for clinic in new_data:
         response = collection.document(clinic['id']).set(clinic)
-        
-        
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     criar_todas_as_clinicas_no_firestore()

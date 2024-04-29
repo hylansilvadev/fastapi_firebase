@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, status
 from google.cloud.firestore_v1.base_query import FieldFilter
 
 from app.database import database
-from app.models.patient_models import Patient, UserCreateModel
+from app.models.patient_models import Patient, PatientCreateModel
 
 collection = database.collection('users')
 
@@ -22,7 +22,7 @@ def create_new_user(patient: Patient):
     """
     Cria dados no firestore de acordo com os dados enviados da API
     """
-    patient_doc = UserCreateModel(**patient.model_dump())
+    patient_doc = PatientCreateModel(**patient.model_dump())
     try:
         collection.document(patient_doc.id).set(patient_doc.model_dump())
     except Exception as e:
