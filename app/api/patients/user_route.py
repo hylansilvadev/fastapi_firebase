@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, status
 from google.cloud.firestore_v1.base_query import FieldFilter
 
 from app.database import database
-from app.models.patient_models import Patient, PatientCreateModel
+from app.models.patient_models import Patient, PatientAdminResponse, PatientCreateModel
 
 collection = database.collection('users')
 
@@ -14,7 +14,7 @@ user_route = APIRouter(prefix='/user', tags=['User'])
 
 @user_route.post(
     '/',
-    response_model=Patient,
+    response_model=PatientAdminResponse,
     response_model_by_alias=False,
     status_code=status.HTTP_201_CREATED,
 )
@@ -35,7 +35,7 @@ def create_new_user(patient: Patient):
 
 @user_route.get(
     '/',
-    response_model=List[Patient],
+    response_model=List[PatientAdminResponse],
     response_model_by_alias=False,
     status_code=status.HTTP_200_OK,
 )
@@ -51,7 +51,7 @@ def get_all_users():
                 detail='Nenhum documento foi encontrado',
             )
 
-        return [Patient(**doc.to_dict()) for doc in data]
+        return [PatientAdminResponse(**doc.to_dict()) for doc in data]
 
     except Exception as e:
         raise HTTPException(
@@ -61,7 +61,7 @@ def get_all_users():
 
 @user_route.get(
     '/{id}',
-    response_model=Patient,
+    response_model=PatientAdminResponse,
     response_model_by_alias=False,
     status_code=status.HTTP_200_OK,
 )
@@ -78,7 +78,7 @@ def get_user_by_id(id: str):
     try:
         data = collection.where(filter=FieldFilter('id', '==', id))
         result = data.get()
-        value: Patient = result[0].to_dict()
+        value: PatientAdminResponse = result[0].to_dict()
         return value
     except Exception as e:
         raise HTTPException(
@@ -88,7 +88,7 @@ def get_user_by_id(id: str):
 
 @user_route.put(
     '/{id}',
-    response_model=Patient,
+    response_model=PatientAdminResponse,
     response_model_by_alias=False,
     status_code=status.HTTP_200_OK,
 )

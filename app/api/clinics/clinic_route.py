@@ -27,7 +27,7 @@ def create_new_clinic(clinic: Clinic):
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f'Erro ao criar o usuário: {e}',
+            detail=f'Erro ao criar a clínica: {e}',
         )
     return clinic
 
@@ -38,7 +38,7 @@ def create_new_clinic(clinic: Clinic):
     response_model_by_alias=False,
     status_code=status.HTTP_200_OK,
 )
-def get_all_users():
+def get_all_clinics():
     """
     Retorna uma lista com todos os documentos
     """
