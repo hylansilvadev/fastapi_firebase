@@ -35,3 +35,7 @@ class ClinicCreatedModel(Clinic):
 
 class ClinicUpdateModel(Clinic):
     updatedAt: datetime = datetime.now()
+
+
+class ClinicAdminResponse(ClinicCreatedModel):
+    updatedAt: datetime | None = None
