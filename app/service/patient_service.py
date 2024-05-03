@@ -1,10 +1,8 @@
-from datetime import datetime
 from typing import List
 
 from fastapi import HTTPException, status
 from google.cloud.firestore_v1.base_query import FieldFilter
 
-from app.utils.patch_data import patch_data
 from app.core.database import database
 from app.models.patient_models import (
     Patient,
@@ -66,7 +64,9 @@ class PatientService:
     def update_patient_by_id(self, id: str, patient: Patient):
         try:
             query = collection.document(id)
-            patient_update = PatientUpdateModel(**patient.model_dump(exclude_none=True))
+            patient_update = PatientUpdateModel(
+                **patient.model_dump(exclude_none=True)
+            )
             query.update(field_updates=patient_update.model_dump())
             updated_data = collection.document(id).get()
             return PatientAdminResponse(**updated_data.to_dict())
