@@ -5,7 +5,7 @@ from fastapi import APIRouter, status
 from app.models.clinic_models import Clinic, ClinicAdminResponse
 from app.service.clinic_service import ClinicService
 
-clinic_route = APIRouter(prefix='/clinic', tags=['Clinic'])
+clinic_route = APIRouter(prefix='/clinic', tags=['Clinics'])
 
 clinic_service = ClinicService()
 

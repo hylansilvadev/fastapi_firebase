@@ -8,7 +8,7 @@ from app.models.patient_models import (
 )
 from app.service.patient_service import PatientService
 
-patient_route = APIRouter(prefix='/patient', tags=['patient'])
+patient_route = APIRouter(prefix='/patient', tags=['Patients'])
 
 patient_service = PatientService()
 

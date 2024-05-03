@@ -4,8 +4,8 @@ from fastapi import HTTPException, status
 from google.cloud.firestore_v1.base_query import FieldFilter
 
 from app.core.database import database
-from app.models.clinic_models import Clinic
-from app.models.patient_models import Patient
+from app.models.clinic_models import Clinic, ClinicScheduleResponse
+from app.models.patient_models import Patient, PatientScheduleResponse
 from app.models.schedule_models import (
     CreateSchedule,
     ResponseViewSchedule,
@@ -61,12 +61,13 @@ class ScheduleService:
                         patient_data = patient_doc.to_dict()
 
                         response_schedule = ResponseViewSchedule(
+                            id=schedule_query['id'],
                             datetime=schedule_query['datetime'],
                             doctor_responsible=schedule_query[
                                 'doctor_responsible'
                             ],
-                            clinic=Clinic(**clinic_data),
-                            patient=Patient(**patient_data),
+                            clinic=ClinicScheduleResponse(**clinic_data),
+                            patient=PatientScheduleResponse(**patient_data),
                         )
 
                         patient_list.append(response_schedule)
@@ -108,8 +109,8 @@ class ScheduleService:
                         id=result['id'],
                         datetime=result['datetime'],
                         doctor_responsible=result['doctor_responsible'],
-                        clinic=Clinic(**clinic_data),
-                        patient=Patient(**patient_data),
+                        clinic=ClinicScheduleResponse(**clinic_data),
+                        patient=PatientScheduleResponse(**patient_data),
                     )
 
                     return response_schedule

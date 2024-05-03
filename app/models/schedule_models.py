@@ -3,8 +3,8 @@ from uuid import uuid4
 
 from pydantic import BaseModel
 
-from app.models.clinic_models import Clinic
-from app.models.patient_models import Patient
+from app.models.clinic_models import Clinic, ClinicScheduleResponse
+from app.models.patient_models import Patient, PatientScheduleResponse
 
 
 class Schedule(BaseModel):
@@ -27,8 +27,8 @@ class ResponseViewSchedule(BaseModel):
     id: str
     datetime: datetime
     doctor_responsible: str
-    clinic: Clinic
-    patient: Patient
+    clinic: ClinicScheduleResponse
+    patient: PatientScheduleResponse
 
 
 class ResponseAdminSchedule(ResponseViewSchedule):
