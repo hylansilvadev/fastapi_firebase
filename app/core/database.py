@@ -2,7 +2,7 @@ import firebase_admin
 from fastapi import HTTPException
 from firebase_admin import credentials, firestore, initialize_app
 
-from app.config import settings
+from app.core.config import settings
 
 try:
     cred = credentials.Certificate(settings.SECRET_DATABASE_PATH)
