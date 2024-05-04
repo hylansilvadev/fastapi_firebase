@@ -55,7 +55,7 @@ def get_patient_by_id(id: str):
     return patient_service.get_patient_by_id(id)
 
 
-@patient_route.patch(
+@patient_route.put(
     '/{id}',
     response_model=PatientAdminResponse,
     response_model_by_alias=False,

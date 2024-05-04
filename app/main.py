@@ -6,7 +6,7 @@ from app.api.router import router
 
 
 app = FastAPI(
-    title='FastAPI + Firebase (firebase_admin & firedantic)', docs_url='/'
+    title='FastAPI + Firebase', docs_url='/'
 )
 
 origins=[
