@@ -51,11 +51,11 @@ def get_clinic_by_id(id: str):
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail='Nenhum id foi enviado.',
             )
-    return clinic_service.get_clinic_by_id()
+    return clinic_service.get_clinic_by_id(id)
 
 
 @clinic_route.put(
-    '/id/{id}',
+    '/{id}',
     status_code=status.HTTP_200_OK,
     response_model=ClinicAdminResponse,
     response_model_by_alias=False
