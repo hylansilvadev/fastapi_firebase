@@ -39,3 +39,9 @@ class ClinicUpdateModel(Clinic):
 
 class ClinicAdminResponse(ClinicCreatedModel):
     updatedAt: datetime | None = None
+
+
+class ClinicScheduleResponse(BaseModel):
+    name: str
+    phone: str
+    addres: Addres

@@ -8,6 +8,7 @@ from app.models.clinic_models import (
     Clinic,
     ClinicAdminResponse,
     ClinicCreatedModel,
+    ClinicUpdateModel,
 )
 
 collection = database.collection('clinics')
@@ -60,7 +61,24 @@ class ClinicService:
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail=f'{e}',
             )
+            
 
+    def update_clinic_by_id(self, id: str, clinic:Clinic):
+        try:
+            query = collection.document(id)
+            clinic_update = ClinicUpdateModel(
+                **clinic.model_dump(exclude_none=True)
+            )
+            query.update(field_updates=clinic_update.model_dump())
+            updated_data = collection.document(id).get()
+            return ClinicAdminResponse(**updated_data.to_dict())
+        except Exception as e:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f'{e}',
+            )
+        
+    
     def delete_clinic_by_id(self, id: str):
         try:
             collection.document(id).delete()

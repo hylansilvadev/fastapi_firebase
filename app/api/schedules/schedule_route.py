@@ -5,7 +5,7 @@ from fastapi import APIRouter, status
 from app.models.schedule_models import ResponseViewSchedule, Schedule
 from app.service.schedule_service import ScheduleService
 
-schedule_route = APIRouter(prefix='/schedule', tags=['schedule'])
+schedule_route = APIRouter(prefix='/schedule', tags=['Schedules'])
 
 schedule_service = ScheduleService()
 

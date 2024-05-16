@@ -8,7 +8,7 @@ from app.models.patient_models import (
 )
 from app.service.patient_service import PatientService
 
-patient_route = APIRouter(prefix='/patient', tags=['patient'])
+patient_route = APIRouter(prefix='/patient', tags=['Patients'])
 
 patient_service = PatientService()
 
@@ -55,7 +55,7 @@ def get_patient_by_id(id: str):
     return patient_service.get_patient_by_id(id)
 
 
-@patient_route.patch(
+@patient_route.put(
     '/{id}',
     response_model=PatientAdminResponse,
     response_model_by_alias=False,

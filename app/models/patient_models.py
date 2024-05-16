@@ -36,3 +36,10 @@ class PatientAdminResponse(Patient):
     id: str
     createdAt: datetime
     updatedAt: datetime | None = None
+
+
+class PatientScheduleResponse(BaseModel):
+    name: str
+    email: str
+    whatsapp: str
+    addres: Addres
