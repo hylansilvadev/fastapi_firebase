@@ -7,6 +7,17 @@ class Settings(BaseSettings):
     )
 
     SECRET_DATABASE_PATH: str
+    TYPE: str
+    PROJECT_ID: str
+    PRIVATE_KEY_ID: str
+    PRIVATE_KEY: str
+    CLIENT_EMAIL: str
+    CLIENT_ID: str
+    AUTH_URI: str
+    TOKEN_URI: str
+    AUTH_PROVIDER_X509_CERT_URL: str
+    CLIENT_X509_CERT_URL: str
+    UNIVERSE_DOMAIN: str
 
 
 settings = Settings()
