@@ -6,11 +6,11 @@ from app.api.router import router
 
 
 app = FastAPI(
-    title='FastAPI + Firebase', docs_url='/'
+    title='FastAPI + Firebase', docs_url=None
 )
 
 origins=[
-    'http://localhost:5173/'
+    '*'
 ]
 
 app.add_middleware(
